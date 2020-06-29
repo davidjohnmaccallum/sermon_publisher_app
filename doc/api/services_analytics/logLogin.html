@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the logLogin function from the analytics library, for the Dart programming language.">
+  <title>logLogin function - analytics library - Dart API</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="../static-assets/github.css">
+  <link rel="stylesheet" href="../static-assets/styles.css">
+  <link rel="icon" href="../static-assets/favicon.png">
+
+</head>
+
+<body data-base-href="../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">sermon_publish</a></li>
+    <li><a href="../services_analytics/services_analytics-library.html">analytics</a></li>
+    <li class="self-crumb">logLogin function</li>
+  </ol>
+  <div class="self-name">logLogin</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="../index.html">sermon_publish</a></li>
+      <li><a href="../services_analytics/services_analytics-library.html">analytics</a></li>
+      <li class="self-crumb">logLogin function</li>
+    </ol>
+    
+    <h5>analytics library</h5>
+    <ol>
+    
+    
+    
+    
+      <li class="section-title"><a href="../services_analytics/services_analytics-library.html#properties">Properties</a></li>
+      <li><a href="../services_analytics/analytics.html">analytics</a></li>
+    
+      <li class="section-title"><a href="../services_analytics/services_analytics-library.html#functions">Functions</a></li>
+      <li><a href="../services_analytics/logEvent.html">logEvent</a></li>
+      <li><a href="../services_analytics/logLogin.html">logLogin</a></li>
+      <li><a href="../services_analytics/logShare.html">logShare</a></li>
+    
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-left-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-function">logLogin</span> function  </h1></div>
+
+    <section class="multi-line-signature">
+        <span class="returntype">dynamic</span>
+                <span class="name ">logLogin</span>
+(<wbr><ol class="parameter-list"><li><span class="parameter" id="logLogin-param-user"><span class="type-annotation"><a href="../model_user/User-class.html">User</a></span> <span class="parameter-name">user</span></span></li>
+</ol>)
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">logLogin(User user) {
+  logger.debug(&quot;Login&quot;, event: &quot;analytics.setUserId()&quot;);
+  logger.debug(&quot;Login&quot;, event: &quot;analytics.logLogin()&quot;);
+  if (kReleaseMode) return;
+  analytics.setUserId(user.id);
+  analytics.logLogin();
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    sermon_publish
+      1.3.0
+  </span>
+
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../static-assets/typeahead.bundle.min.js"></script>
+<script src="../static-assets/highlight.pack.js"></script>
+<script src="../static-assets/URI.js"></script>
+<script src="../static-assets/script.js"></script>
+
+
+</body>
+
+</html>
