@@ -59,8 +59,7 @@ class _SermonListScreenState extends State<SermonListScreen> {
     );
   }
 
-  Widget _buildProgressIndicator() => Padding(
-        padding: const EdgeInsets.only(top: 16.0),
+  Widget _buildProgressIndicator() => Center(
         child: CircularProgressIndicator(),
       );
 

@@ -8,6 +8,7 @@ import 'package:sermon_publish/screens/ui_helper.dart';
 import 'package:sermon_publish/services/auth_service.dart' as authService;
 import 'package:sermon_publish/services/analytics_service.dart' as analyticsService;
 import 'package:sermon_publish/services/logger_service.dart' as logger;
+import 'package:package_info/package_info.dart';
 
 /// A beautiful welcome and authentication screen.
 ///
@@ -18,6 +19,16 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   bool _isLoading = false;
+  String _version;
+  @override
+  void initState() {
+    super.initState();
+    PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
+      setState(() {
+        _version = packageInfo.version;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +38,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       Column(children: <Widget>[
         Expanded(
             child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
               _buildTitle(),
               _buildSignInButton(context),
+              Text("$_version"),
               _isLoading ? _buildProgressIndicator() : Container(),
             ])),
         Expanded(child: Container())

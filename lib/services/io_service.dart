@@ -11,13 +11,15 @@ import 'package:sermon_publish/services/logger_service.dart' as logger;
 Future<List<AudioFile>> listAudioFiles(String dirPath) =>
     mockServices ? _mockListAudioFiles(dirPath) : _listAudioFiles(dirPath);
 
-Future<List<AudioFile>> _listAudioFiles(String dirPath) {
+Future<List<AudioFile>> _listAudioFiles(String dirPath) async {
   logger.debug("Returning audio files on device.", event: "listAudioFiles()");
-  return Directory(dirPath)
+  List<AudioFile> result = await Directory(dirPath)
       .list(recursive: true, followLinks: false)
       .where((entity) => entity is File && _isAudioFile(entity))
       .map((entity) => AudioFile.fromFile(entity as File))
       .toList();
+  result.sort((a, b) => b.modified.compareTo(a.modified));
+  return result;
 }
 
 Future<List<AudioFile>> _mockListAudioFiles(String dirPath) async => [

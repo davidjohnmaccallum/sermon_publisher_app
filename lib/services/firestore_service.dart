@@ -101,19 +101,12 @@ Future<void> saveUser(User user) async {
 Future<List<Sermon>> listSermons() => mockServices ? _mockListSermons() : _listSermons();
 
 Future<List<Sermon>> _listSermons() async {
-  // Do we have a local copy of the sermons?
-  List<Sermon> sermons = registry.getSermons();
-  if (sermons != null) {
-    logger.debug("Returning sermons from registry.", event: "_listSermons()");
-    return sermons;
-  }
-
   // Read sermons from DB.
   logger.debug("Getting sermons from Firestore.", event: "_listSermons()");
   User user = registry.getUser();
   DocumentReference userRef = Firestore.instance.document("/users/${user.id}");
   QuerySnapshot query = await userRef.collection('sermons').getDocuments();
-  sermons = query.documents
+  List<Sermon> sermons = query.documents
       .map((doc) => Sermon(
           id: doc.documentID,
           audioFile: AudioFile.fromFile(File(doc.data['filePath'])),
@@ -125,20 +118,12 @@ Future<List<Sermon>> _listSermons() async {
           listens: doc.data['listens'] ?? 0))
       .toList();
 
-  registry.setSermons(sermons);
-
   return sermons;
 }
 
 Future<List<Sermon>> _mockListSermons() async {
-  List<Sermon> sermons = registry.getSermons();
-  if (sermons != null) {
-    logger.debug("Returning sermons from registry.", event: "_mockListSermons()");
-    return sermons;
-  }
-
   logger.debug("Returning mock sermons.", event: "_mockListSermons()");
-  sermons = [
+  List<Sermon> sermons = [
     Sermon(
       id: '1',
       title: "The high priestly prayer",
@@ -196,8 +181,6 @@ Future<List<Sermon>> _mockListSermons() async {
     ),
   ];
 
-  registry.setSermons(sermons);
-
   return sermons;
 }
 
@@ -209,8 +192,6 @@ Future<void> saveSermon(Sermon sermon) async {
     // This is a new sermon. Give it an ID.
     docRef = Firestore.instance.collection('/users/${user.id}/sermons').document();
     sermon.id = docRef.documentID;
-
-    registry.getSermons().add(sermon);
   } else {
     docRef = Firestore.instance.document("/users/${user.id}/sermons/${sermon.id}");
   }
@@ -230,8 +211,6 @@ Future<void> saveSermon(Sermon sermon) async {
 
 Future<void> deleteSermon(Sermon sermon) async {
   logger.debug("Deleting sermon ${sermon.title}.", event: "deleteSermon()");
-
-  registry.getSermons().remove(sermon);
 
   if (mockServices) return;
 
