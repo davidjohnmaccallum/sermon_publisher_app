@@ -40,10 +40,10 @@ class TestHarness extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: WelcomeScreen(),
-      // home: NewUserForm(),
+      // home: WelcomeScreen(),
+      // home: ProfileUpdateScreen(),
       // home: UsageReportScreen(),
-      // home: SermonList(),
+      // home: SermonListScreen(),
       // home: SermonForm(),
       // home: SermonDetails(),
       // home: ModalTester(

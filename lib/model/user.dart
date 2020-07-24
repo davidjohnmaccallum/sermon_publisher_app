@@ -1,4 +1,5 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:uuid/uuid.dart';
 import 'package:sermon_publish/services/firestore_service.dart' as firestore;
 import 'package:sermon_publish/services/analytics_service.dart' as analyticsService;
@@ -14,10 +15,13 @@ class User {
   String name;
   DateTime signedUpOn;
   String email;
+  String phoneNumber;
   String ministryName;
+  bool emailContactEnabled = false;
+  bool phoneContactEnabled = false;
   String photoUrl;
   String bucketName;
-  bool enabled;
+  bool enabled = false;
 
   // Lifecycle methods
   // =================
@@ -25,7 +29,13 @@ class User {
   /// Creates a new user.
   ///
   /// This saves the user to the DB and creates a storage bucket for the user's sermons.
-  static Future<User> signup(String id, String name, String email, String ministryName, String photoUrl) async {
+  static Future<User> signup(
+    String id,
+    String name,
+    String email,
+    String ministryName,
+    String photoUrl,
+  ) async {
     analyticsService.logEvent("signup_new_user");
 
     User user = User(
@@ -35,7 +45,6 @@ class User {
       ministryName: ministryName,
       photoUrl: photoUrl,
       bucketName: Uuid().v1(),
-      enabled: true,
       signedUpOn: DateTime.now(),
     );
 
@@ -53,6 +62,15 @@ class User {
 
   static Future<User> get(String id) => firestore.getUser(id);
 
+  // Methods
+  // =======
+
+  /// Opens the published sermon in a web browser.
+  Future<void> changePhoto() async {
+    analyticsService.logEvent("change_profile_photo");
+    await launch('https://myaccount.google.com/personal-info');
+  }
+
   // Technical stuff
   // ===============
 
@@ -61,7 +79,10 @@ class User {
     this.name,
     this.signedUpOn,
     this.email,
+    this.phoneNumber,
     this.ministryName,
+    this.emailContactEnabled,
+    this.phoneContactEnabled,
     this.photoUrl,
     this.bucketName,
     this.enabled,

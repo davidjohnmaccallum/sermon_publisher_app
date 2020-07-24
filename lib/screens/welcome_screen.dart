@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:sermon_publish/const.dart';
 import 'package:sermon_publish/screens/account_disabled_screen.dart';
-import 'package:sermon_publish/screens/new_user_screen.dart';
+import 'package:sermon_publish/screens/profile_update_screen.dart';
 import 'package:sermon_publish/screens/sermon_list_screen.dart';
 import 'package:sermon_publish/screens/ui_helper.dart';
 import 'package:sermon_publish/services/auth_service.dart' as authService;
@@ -96,7 +96,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       analyticsService.logLogin(authResult.user);
 
       if (authResult.isNewUser) {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NewUserScreen()));
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ProfileUpdateScreen()));
       } else if (authResult.user.enabled) {
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SermonListScreen()));
       } else {

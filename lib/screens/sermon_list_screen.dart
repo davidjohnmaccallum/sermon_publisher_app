@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sermon_publish/model/audio_file.dart';
+import 'package:sermon_publish/screens/profile_update_screen.dart';
 import 'package:sermon_publish/screens/sermon_details_screen.dart';
 import 'package:sermon_publish/screens/ui_helper.dart';
 import 'package:sermon_publish/screens/usage_report_screen.dart';
@@ -41,6 +42,12 @@ class _SermonListScreenState extends State<SermonListScreen> {
             icon: Icon(Icons.attach_money),
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => UsageReportScreen()));
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.person),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileUpdateScreen()));
             },
           ),
           // IconButton(
