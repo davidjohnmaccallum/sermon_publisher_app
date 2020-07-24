@@ -34,6 +34,7 @@ Future<User> _getUser(id) async {
     signedUpOn: doc.data['signedUpOn'] != null ? (doc.data['signedUpOn'] as Timestamp).toDate() : null,
     email: doc.data['email'],
     ministryName: doc.data['ministryName'],
+    photoUrl: doc.data['photoUrl'],
     bucketName: doc.data['bucketName'],
     enabled: doc.data['enabled'],
   );
@@ -57,6 +58,7 @@ Future<User> _mockGetUser(String id) async {
     signedUpOn: DateTime.now(),
     email: "davidjohnmac@gmail.com",
     ministryName: "FBC",
+    photoUrl: "https://lh3.googleusercontent.com/a-/AOh14GgtWoJELwFU97fXF-ge7R2FtVwj5MGq9lrjSFyqMA=s96-c",
     bucketName: "mock.sermon-publish.appspot.com",
     enabled: true,
   );
@@ -90,6 +92,7 @@ Future<void> saveUser(User user) async {
     'signedUpOn': user.signedUpOn != null ? Timestamp.fromDate(user.signedUpOn) : null,
     'email': user.email,
     'ministryName': user.ministryName,
+    'photoUrl': user.photoUrl,
     'bucketName': user.bucketName,
     'enabled': user.enabled,
   });

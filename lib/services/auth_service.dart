@@ -31,9 +31,19 @@ Future<AuthResult> _googleAuth() async {
   User user = await User.get(firebaseUser.uid);
 
   if (user == null) {
-    user = await User.signup(firebaseUser.uid, firebaseUser.displayName, firebaseUser.email, firebaseUser.displayName);
+    user = await User.signup(
+      firebaseUser.uid,
+      firebaseUser.displayName,
+      firebaseUser.email,
+      firebaseUser.displayName,
+      firebaseUser.photoUrl,
+    );
     return AuthResult(user, true);
   } else {
+    user.name = firebaseUser.displayName;
+    user.email = firebaseUser.email;
+    user.photoUrl = firebaseUser.photoUrl;
+    await user.save();
     return AuthResult(user, false);
   }
 }
