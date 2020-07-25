@@ -40,10 +40,11 @@ Future<AuthResult> _googleAuth() async {
     );
     return AuthResult(user, true);
   } else {
-    user.name = firebaseUser.displayName;
-    user.email = firebaseUser.email;
-    user.photoUrl = firebaseUser.photoUrl;
-    await user.save();
+    // Getting photo URL for users who signed up before this feature was added.
+    if (user.photoUrl == null) {
+      user.photoUrl = firebaseUser.photoUrl;
+      await user.save();
+    }
     return AuthResult(user, false);
   }
 }
