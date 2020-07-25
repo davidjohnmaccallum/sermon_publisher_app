@@ -40,11 +40,11 @@ Future<AuthResult> _googleAuth() async {
     );
     return AuthResult(user, true);
   } else {
-    // Getting photo URL for users who signed up before this feature was added.
-    if (user.photoUrl == null) {
-      user.photoUrl = firebaseUser.photoUrl;
-      await user.save();
-    }
+    // TODO: Use Google Account picture as the default
+    // but if the user changes the picture store it locally.
+    // Then these two lines can be removed.
+    user.photoUrl = firebaseUser.photoUrl;
+    await user.save();
     return AuthResult(user, false);
   }
 }
