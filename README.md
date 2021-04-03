@@ -16,3 +16,6 @@ I love light weight, simple and efficient tools.
 I built the pastor app using Flutter. I used Google authentication which makes things easier for developer and user. This was easy to implement thanks to google_sign_in. The first step in the sermon publish process is to select an audio file from the device filesystem. This took a bit of time to get right. When the pastor presses the upload button the sermon metadata (title, author, date etc) is uploaded to Firebase Firestore and the sermon audio file is uploaded to Firebase Storage. I also added a screen to allow pastors to keep an eye on hosting costs.
 
 The public website is built using NodeJS, Express, Pug templates and Bootstrap and hosted using Heroku.
+
+* https://github.com/davidjohnmaccallum/sermon_publisher_app
+* https://github.com/davidjohnmaccallum/sermon_publisher_web
