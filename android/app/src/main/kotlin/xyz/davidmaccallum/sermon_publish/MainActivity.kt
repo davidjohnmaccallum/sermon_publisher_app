@@ -1,4 +1,4 @@
-package com.example.sermon_publish
+package xyz.davidmaccallum.sermon_publish
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
