@@ -2,7 +2,7 @@
 
 ## Fastlane
 
-Fastlane is an automation tool for iOS and Android build and deployment.
+Fastlane is an automation tool for iOS and Android build and deployment. See usage instructions in /android/fastlane/README.md.
 
 ### Install and configure
 
